@@ -1,0 +1,1019 @@
+// noto-serif
+@mixin noto-serif($style:normal) {
+  font-family: "Noto Serif", serif;
+  font-style: $style;
+  font-weight: bold;
+}
+
+//breakpoints
+$breakpoints: ("sm": "screen and (max-width: 400px)",
+  "md": "screen and (max-width: 600px)",
+  "lg": "screen and (max-width: 800px)",
+  "xl": "screen and (max-width: 1000px)"
+) !default;
+
+// media query
+@mixin mq($breakpoint: md) {
+  @media #{map-get($breakpoints,$breakpoint)} {
+    @content;
+  }
+}
+
+// humburger menu
+.sp-only {
+  display: none;
+
+  @include mq(md) {
+    display: block;
+  }
+}
+
+.pc-only {
+  @include mq(md) {
+    display: none;
+  }
+}
+
+.noscroll {
+  overflow: hidden;
+}
+
+// wrapper
+@mixin wrapper {
+  max-width: 1210px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+// top page
+body {
+  font-family: "Noto Serif JP", serif;
+  color: #fff;
+
+  // first view
+  .fv {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    position: relative;
+
+    header {
+      width: 100%;
+      height: 36px;
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 999;
+
+      .header-wrapper {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        @include wrapper;
+
+        h1 {
+          @include noto-serif($style:italic);
+          font-size: 26px;
+        }
+
+        nav {
+          line-height: 36px;
+
+          ul {
+            display: flex;
+
+            li {
+              margin-left: 30px;
+
+              a {
+                @include noto-serif($style:italic);
+                font-size: 16px;
+              }
+            }
+          }
+        }
+
+        // ハンバーガーメニューのボタン
+        .burger-wrapper {
+          width: 30px;
+          height: 20px;
+          position: absolute;
+          top: 50%;
+          right: 10px;
+          transform: translateY(-50%);
+          z-index: 999;
+
+          .burger-btn {
+            display: inline-block;
+            width: 30px;
+            height: 20px;
+            position: relative;
+
+            cursor: pointer;
+
+            .bar {
+              width: 30px;
+              height: 3px;
+              background-color: #fff;
+              position: absolute;
+              left: 50%;
+              transform: translateX(-50%);
+            }
+
+            .bar-top {
+              top: 0;
+              transition: transform 0.3s;
+            }
+
+            .bar-mid {
+              top: 50%;
+              transform: translate(-50%, -50%);
+            }
+
+            .bar-bottom {
+              bottom: 0;
+              transition: transform 0.3s;
+            }
+          }
+
+          .close {
+            .bar-top {
+              transform: translate(-50%, 9px) rotate(45deg);
+              transition: transform 0.3s;
+            }
+
+            .bar-mid {
+              opacity: 0;
+              transition: opacity 0.3s;
+            }
+
+            .bar-bottom {
+              transform: translate(-50%, -9px) rotate(-45deg);
+              transition: transform 0.3s;
+            }
+          }
+        }
+
+        // ハンバーガーメニューの中身
+        .nav-wrapper {
+          display: none;
+          width: 100vw;
+          height: 100vh;
+          position: fixed;
+          top: -20px;
+          left: 0;
+
+          .header-nav {
+            width: 100%;
+            height: 100%;
+            background-color: #282F35;
+            position: relative;
+
+            .header-ul {
+              flex-direction: column;
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+
+              li {
+                margin-left: 0;
+                margin-bottom: 30px;
+                text-align: center;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    // headerの色がfvを過ぎると変わる
+    .change-color {
+      background: #282F35;
+      height: 96px;
+      top: 0;
+
+      .header-wrapper {
+        h1 {
+          line-height: 96px;
+        }
+
+        nav {
+          line-height: 96px;
+        }
+
+        .nav-wrapper {
+          top: 0;
+        }
+      }
+    }
+
+    // sub-title
+    .wrapper {
+      @include wrapper;
+
+      .tag-line {
+        display: inline-block;
+        position: absolute;
+        top: 68%;
+        transform: translateY(-68%);
+
+        @include mq(sm) {
+          top: 50%;
+          transform: translateY(-50%);
+        }
+
+        h2 {
+          @include noto-serif;
+          font-size: 70px;
+          letter-spacing: 5px;
+
+          @include mq(sm) {
+            font-size: 37px;
+            text-align: center;
+            padding: 0 10px 0 0;
+          }
+        }
+
+        p {
+          font-size: 40px;
+          margin: 23px 0 0 20px;
+
+          @include mq(sm) {
+            font-size: 30px;
+            text-align: center;
+            margin: 23px 0 0;
+            padding: 0 10px 0 0;
+          }
+        }
+      }
+    }
+  }
+
+  // concept
+  .concept {
+    color: #171717;
+    padding: 104px 0 70px;
+
+    @include mq(sm) {
+      padding: 100px 0 40px;
+    }
+
+    .wrapper {
+      max-width: 1010px;
+      margin: 0 auto;
+      padding: 0 10px;
+
+      .sec-title {
+        display: inline-block;
+        margin-bottom: 70px;
+
+        @include mq(md) {
+          margin-bottom: 50px;
+        }
+
+        h3 {
+          @include noto-serif($style:italic);
+          font-size: 60px;
+          color: #282F35;
+          display: inline-block;
+          white-space: nowrap;
+
+          @include mq(md) {
+            font-size: 30px;
+          }
+
+          &::after {
+            content: "";
+            background: #282F35;
+            width: 200px;
+            height: 5px;
+            display: inline-block;
+            margin: 0 0 20px 33px;
+            line-height: 69px;
+
+            @include mq(md) {
+              width: 90px;
+              margin: 0 0 10px 33px;
+            }
+          }
+        }
+      }
+
+      h4 {
+        font-size: 30px;
+        text-align: center;
+        max-width: 600px;
+        margin: 0 auto 60px;
+
+        @include mq(md) {
+          font-size: 20px;
+          margin: 0 auto 30px;
+        }
+      }
+
+      .concept-content {
+        display: flex;
+
+        @include mq(lg) {
+          flex-direction: column;
+        }
+
+        .concept-text {
+          width: 50%;
+          position: relative;
+
+          @include mq(lg) {
+            width: 100%;
+            margin-bottom: 65px;
+          }
+
+          p {
+            font-size: 16px;
+            line-height: 1.7;
+            padding-right: 60px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+
+            @include mq(lg) {
+              padding: 0;
+              position: static;
+              transform: translateY(0%);
+            }
+          }
+        }
+
+        .concept-img {
+          width: 50%;
+          padding-left: 60px;
+
+          @include mq(lg) {
+            width: 100%;
+            padding: 0;
+          }
+
+          img {
+            width: 100%;
+          }
+        }
+      }
+    }
+
+    .tp-text {
+      @include wrapper;
+      text-align: right;
+      margin-top: 70px;
+
+      @include mq(md) {
+        margin-top: 40px;
+      }
+
+      span {
+        display: inline-block;
+        @include noto-serif;
+        font-size: 90px;
+        opacity: 0.05;
+
+        @include mq(md) {
+          font-size: 40px;
+        }
+      }
+    }
+  }
+
+  // works
+  .works {
+    background: url(../img/works-bgi@2x.jpg)center / cover no-repeat;
+    padding: 104px 0 70px;
+
+    @include mq(sm) {
+      padding: 100px 0 40px;
+    }
+
+    .wrapper {
+      @include wrapper;
+
+      .sec-title {
+        margin-bottom: 70px;
+        text-align: right;
+
+        @include mq(md) {
+          margin-bottom: 50px;
+        }
+
+        h3 {
+          @include noto-serif($style:italic);
+          font-size: 60px;
+          display: inline-block;
+          white-space: nowrap;
+
+          @include mq(md) {
+            font-size: 30px;
+          }
+
+          &::after {
+            content: "";
+            background: #fff;
+            width: 200px;
+            height: 5px;
+            display: inline-block;
+            margin: 0 0 20px 33px;
+            line-height: 69px;
+
+            @include mq(md) {
+              width: 90px;
+              margin: 0 0 10px 33px;
+            }
+          }
+        }
+      }
+
+      .works-content-wrapper {
+        max-width: 1000px;
+        margin: 0 auto;
+
+        .works-content {
+          display: flex;
+
+          @include mq(md) {
+            flex-direction: column;
+          }
+
+          .content {
+            background: #fff;
+            margin: 10px;
+
+            img {
+              width: 100%;
+            }
+
+            p {
+              font-size: 16px;
+              color: #141414;
+              line-height: 1.7;
+              padding: 25px 20px;
+            }
+          }
+        }
+
+        .btn {
+          margin-top: 70px;
+          text-align: center;
+
+          a {
+            display: inline-block;
+            @include noto-serif;
+            color: #171717;
+            background: #F7D43F;
+            width: 235px;
+            height: 59px;
+            line-height: 59px;
+            border-radius: 30px;
+          }
+        }
+      }
+
+      .tp-text {
+        margin-top: 70px;
+
+        @include mq(md) {
+          margin-top: 40px;
+        }
+
+        span {
+          display: inline-block;
+          @include noto-serif;
+          font-size: 90px;
+          color: #fff;
+          opacity: 0.10;
+
+          @include mq(md) {
+            font-size: 40px;
+          }
+        }
+      }
+    }
+  }
+
+  // service
+  .service {
+    padding: 100px 0 70px;
+
+    @include mq(sm) {
+      padding: 100px 0 40px;
+    }
+
+    .sec-title {
+      max-width: 1010px;
+      margin: 0 auto 80px;
+      padding: 0 10px;
+
+      @include mq(md) {
+        margin: 0 auto 50px;
+      }
+
+      h3 {
+        @include noto-serif($style:italic);
+        font-size: 60px;
+        color: #282F35;
+        display: inline-block;
+        white-space: nowrap;
+
+        @include mq(md) {
+          font-size: 30px;
+        }
+
+        &::after {
+          content: "";
+          background: #282F35;
+          width: 200px;
+          height: 5px;
+          display: inline-block;
+          margin: 0 0 20px 33px;
+          line-height: 69px;
+
+          @include mq(md) {
+            width: 90px;
+            margin: 0 0 10px 33px;
+          }
+        }
+      }
+    }
+
+    .service-content {
+      display: flex;
+
+      @include mq(md) {
+        flex-direction: column;
+      }
+
+      .content1 {
+        background: url(../img/service-img01@2x.jpg)center / cover no-repeat;
+        width: 100%;
+        height: 320px;
+        position: relative;
+
+        @include mq(md) {
+          margin-bottom: 30px;
+        }
+
+        a {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+
+          &:hover {
+            background: #171717;
+            opacity: 0.3;
+          }
+
+          h4 {
+            @include noto-serif($style:italic);
+            font-size: 40px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+          }
+        }
+      }
+
+      .content2 {
+        background: url(../img/service-img02@2x.jpg)center / cover no-repeat;
+        width: 100%;
+        height: 320px;
+        position: relative;
+
+        @include mq(md) {
+          margin-bottom: 30px;
+        }
+
+        a {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+
+          &:hover {
+            background: #171717;
+            opacity: 0.3;
+          }
+
+          h4 {
+            @include noto-serif($style:italic);
+            font-size: 40px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+          }
+        }
+      }
+
+      .content3 {
+        background: url(../img/sevice-img03@2x.jpg)center / cover no-repeat;
+        width: 100%;
+        height: 320px;
+        position: relative;
+
+        a {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+
+          &:hover {
+            background: #171717;
+            opacity: 0.3;
+          }
+
+          h4 {
+            @include noto-serif($style:italic);
+            font-size: 40px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+          }
+        }
+      }
+    }
+
+    .tp-text {
+      @include wrapper;
+      text-align: right;
+      margin-top: 70px;
+
+      @include mq(md) {
+        margin-top: 40px;
+      }
+
+      span {
+        display: inline-block;
+        @include noto-serif;
+        font-size: 90px;
+        color: #171717;
+        opacity: 0.05;
+
+        @include mq(md) {
+          font-size: 40px;
+        }
+      }
+    }
+  }
+
+  // contact
+  .contact {
+    background: url(../img/contact-bgi@2x.jpg)center / cover no-repeat;
+    padding: 109px 0 70px;
+
+    @include mq(sm) {
+      padding: 100px 0 40px;
+    }
+
+    .wrapper {
+      @include wrapper;
+
+      .sec-title {
+        margin-bottom: 80px;
+        text-align: right;
+
+        h3 {
+          @include noto-serif($style:italic);
+          font-size: 60px;
+          display: inline-block;
+          white-space: nowrap;
+
+          @include mq(md) {
+            font-size: 30px;
+          }
+
+          &::after {
+            content: "";
+            background: #fff;
+            width: 200px;
+            height: 5px;
+            display: inline-block;
+            margin: 0 0 20px 33px;
+            line-height: 69px;
+
+            @include mq(md) {
+              width: 90px;
+              margin: 0 0 10px 33px;
+            }
+          }
+        }
+      }
+
+      p {
+        font-size: 20px;
+        text-align: center;
+      }
+
+      .btn {
+        margin-top: 40px;
+        text-align: center;
+
+        a {
+          display: inline-block;
+          @include noto-serif;
+          color: #171717;
+          background: #F7D43F;
+          width: 235px;
+          height: 59px;
+          line-height: 59px;
+          border-radius: 30px;
+        }
+      }
+
+      .tp-text {
+        margin-top: 70px;
+
+        @include mq(md) {
+          margin-top: 40px;
+        }
+
+        span {
+          display: inline-block;
+          @include noto-serif;
+          font-size: 90px;
+          color: #fff;
+          opacity: 0.10;
+
+          @include mq(md) {
+            font-size: 40px;
+          }
+        }
+      }
+    }
+  }
+
+  // footer
+  footer {
+    height: 79px;
+    line-height: 79px;
+
+    p {
+      @include noto-serif;
+      font-size: 14px;
+      color: #282F35;
+      text-align: center;
+    }
+  }
+}
+
+// contact-page-fv
+.contact-page-fv {
+  background: url(../img/contact-page-bgi@2x.jpg)center/cover no-repeat;
+  height: 453px;
+  position: relative;
+
+  header {
+    width: 100%;
+    height: 36px;
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999;
+
+    .header-wrapper {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      @include wrapper;
+
+      h1 {
+        @include noto-serif($style:italic);
+        font-size: 26px;
+      }
+
+      nav {
+        line-height: 36px;
+
+        ul {
+          display: flex;
+
+          li {
+            margin-left: 30px;
+
+            a {
+              @include noto-serif($style:italic);
+              font-size: 16px;
+            }
+          }
+        }
+      }
+
+
+      // ハンバーガーメニューのボタン
+      .burger-wrapper {
+        width: 30px;
+        height: 20px;
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        z-index: 999;
+
+        .burger-btn {
+          display: inline-block;
+          width: 30px;
+          height: 20px;
+          position: relative;
+
+          cursor: pointer;
+
+          .bar {
+            width: 30px;
+            height: 3px;
+            background-color: #fff;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+          }
+
+          .bar-top {
+            top: 0;
+            transition: transform 0.3s;
+          }
+
+          .bar-mid {
+            top: 50%;
+            transform: translate(-50%, -50%);
+          }
+
+          .bar-bottom {
+            bottom: 0;
+            transition: transform 0.3s;
+          }
+        }
+
+        .close {
+          .bar-top {
+            transform: translate(-50%, 9px) rotate(45deg);
+            transition: transform 0.3s;
+          }
+
+          .bar-mid {
+            opacity: 0;
+            transition: opacity 0.3s;
+          }
+
+          .bar-bottom {
+            transform: translate(-50%, -9px) rotate(-45deg);
+            transition: transform 0.3s;
+          }
+        }
+      }
+
+      // ハンバーガーメニューの中身
+      .nav-wrapper {
+        display: none;
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        top: -20px;
+        left: 0;
+
+        .header-nav {
+          width: 100%;
+          height: 100%;
+          background-color: #282F35;
+          position: relative;
+
+          .header-ul {
+            flex-direction: column;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            li {
+              margin-left: 0;
+              margin-bottom: 30px;
+              text-align: center;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // headerの色がfvを過ぎると変わる
+  .change-color {
+    background: #282F35;
+    height: 96px;
+    top: 0;
+
+    .header-wrapper {
+      h1 {
+        line-height: 96px;
+      }
+
+      nav {
+        line-height: 96px;
+      }
+
+      .nav-wrapper {
+        top: 0;
+      }
+    }
+  }
+
+  h2 {
+    @include noto-serif($style:italic);
+    font-size: 60px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    @include mq(md) {
+      font-size: 30px;
+    }
+  }
+
+  .tp-text {
+    position: absolute;
+    bottom: 40px;
+    left: 48px;
+
+    span {
+      display: inline-block;
+      @include noto-serif;
+      font-size: 90px;
+      opacity: 0.05;
+
+      @include mq(md) {
+        font-size: 40px;
+      }
+    }
+  }
+}
+
+.contact-page {
+  padding: 97px 0 80px;
+  @include noto-serif;
+  color: #171717;
+
+  .contact-page-wrapper {
+    max-width: 710px;
+    margin: 0 auto;
+    padding: 0 10px;
+
+    form {
+      label {
+        display: inline-block;
+        margin-bottom: 10px;
+      }
+
+      .checkbox {
+        margin-bottom: 20px;
+
+        div {
+          display: inline-block;
+
+          label {
+            margin-right: 10px;
+          }
+        }
+      }
+
+      .contact-text {
+        margin-bottom: 20px;
+      }
+
+      #name,
+      #tell-number,
+      #email,
+      #inquiry {
+        display: block;
+        width: 100%;
+        height: 30px;
+        border: 1px solid #141414;
+      }
+
+      #inquiry {
+        height: 195px;
+      }
+    }
+
+    .btn {
+      margin-top: 80px;
+      text-align: center;
+
+      a {
+        display: inline-block;
+        @include noto-serif;
+        color: #171717;
+        background: #F7D43F;
+        width: 235px;
+        height: 59px;
+        line-height: 59px;
+        border-radius: 30px;
+      }
+    }
+  }
+}

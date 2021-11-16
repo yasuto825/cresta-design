@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cresta Design | Contact page</title>
+
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif&family=Noto+Serif+JP&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- css -->
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- firstview -->
+    <div class="contact-page-fv" id="cp-fv">
+      <!-- header -->
+      <header id="header">
+        <div class="header-wrapper">
+          <h1><a href="index.html">Cresta Design</a></h1>
+
+          <!-- ナビゲーションメニュー -->
+          <nav class="pc-only">
+            <ul>
+              <li><a href="index.html">Concept</a></li>
+              <li><a href="index.html">Service</a></li>
+              <li><a href="index.html">Works</a></li>
+              <li><a href="#contact-page">Contact</a></li>
+            </ul>
+          </nav>
+
+          <!--ハンバーガーメニューのボタン-->
+          <div class="burger-wrapper sp-only">
+            <div class="burger-btn">
+              <span class="bar bar-top"></span>
+              <span class="bar bar-mid"></span>
+              <span class="bar bar-bottom"></span>
+            </div>
+          </div>
+
+          <!--ハンバーガーメニューの中身-->
+          <div class="nav-wrapper sp-only">
+            <nav class="header-nav">
+              <ul class="header-ul">
+                <li><a href="index.html">Concept</a></li>
+                <li><a href="index.html">Service</a></li>
+                <li><a href="index.html">Works</a></li>
+                <li><a href="contact.html">Contact</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </header>
+
+      <h2>Contact</h2>
+
+      <div class="tp-text">
+        <span>Contact us</span>
+      </div>
+    </div>
+
+    <!-- contact page-->
+    <section class="contact-page" id="contact-page">
+      <div class="contact-page-wrapper">
+        <form action="" method="post">
+          <label>お問い合わせ内容</label>
+
+          <div class="checkbox">
+            <div>
+              <input
+                type="checkbox"
+                id="documentRequest"
+                name="contact"
+                value="documentRequest"
+              />
+              <label for="documentRequest">資料請求</label>
+            </div>
+
+            <div>
+              <input type="checkbox" id="tell" name="contact" value="tell" />
+              <label for="tell">お電話でのご相談を希望</label>
+            </div>
+
+            <div>
+              <input
+                type="checkbox"
+                id="subscription"
+                name="contact"
+                value="subscription"
+              />
+              <label for="subscription">申し込み</label>
+            </div>
+          </div>
+
+          <div class="contact-text">
+            <label for="name">担当者名</label>
+            <input type="text" name="name" id="name" />
+          </div>
+
+          <div class="contact-text">
+            <label for="tell-number">電話番号</label>
+            <input type="text" name="tell-number" id="tell-number" />
+          </div>
+
+          <div class="contact-text">
+            <label for="email">メールアドレス</label>
+            <input type="email" name="email" id="email" />
+          </div>
+
+          <div class="contact-text">
+            <label for="inquiry">その他</label>
+            <textarea name="inquiry" id="inquiry"></textarea>
+          </div>
+        </form>
+
+        <div class="btn"><a href="contact.html">Submit</a></div>
+      </div>
+    </section>
+
+    <!-- footer -->
+    <footer><p>&copy;cresta.design all rights reserved</p></footer>
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="js/jquery.bgswitcher.js"></script>
+    <script src="js/index.js"></script>
+  </body>
+</html>
